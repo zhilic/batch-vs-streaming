@@ -17,7 +17,7 @@ The project only used the flight data in the directory `/aviation/airline_ontime
 
 ## Batch Processing (Spark)
 
-![system 1](./src/main/resources/sys1.png)
+<img style="width: 80%;" src="./src/main/resources/sys1.png">
 
 The batch processing system fetches clean data stored in either HDFS or Amazon S3 (Simple Storage Service), computes on a Spark
 cluster set up on Amazon EMR (Elastic MapReduce), and finally writes the results into Cassandra which is
@@ -30,7 +30,6 @@ SSH into the master node of the Spark cluster and run the following script:
 ## Streaming Processing (Spark Streaming)
 
 <img style="width: 80%;" src="./src/main/resources/sys2.png">
-![system 2](./src/main/resources/sys2.png)
 
 The streaming processing system includes a Kafka cluster with 3 `m5.large` instances on Amazon MSK (Managed Streaming for Apache Kafka) and a Spark cluster with 3 `m5.xlarge` instances on Amazon Amazon EMR (Elastic MapReduce). The clean data is stored in an Amazon EBS (Elastic Block Store) volume which is mounted to the master node of the Spark cluster, where both my Kafka Producer application and **Spark Streaming** application (the Kafka consumer) are run. All the results are saved into Cassandra which is installed in a Docker container on an Amazon EC2 (Elastic Compute Cloud) instance.
 
